@@ -8,13 +8,15 @@ import { Login } from './components/Login/Login';
 import { SignUP } from './components/SignUP/SignUP';
 import { ManageInventory } from './components/ManageInventory/ManageInventory';
 import { MyItems } from './components/MyItems/MyItems';
+import { UpdateItem } from './components/UpdateItem/UpdateItem';
 
 function App() {
   return (
     <div className="App">
       <Header></Header>
       <Routes>
-        <Route path='/'element={<Home></Home>}></Route>
+        <Route path='/inventory'element={<Home></Home>}></Route>
+        <Route path='/inventory/:id'element={<UpdateItem></UpdateItem>}></Route>
         <Route path='/myitems' element={<MyItems></MyItems>}></Route>
         <Route path='/blogs' element={<Blogs></Blogs>}></Route>
         <Route path='/additems' element={<AddItems></AddItems>}></Route>

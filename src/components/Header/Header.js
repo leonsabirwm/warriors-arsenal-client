@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { auth } from '../../firebase.init';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { signOut } from 'firebase/auth';
+import { Toaster } from 'react-hot-toast';
 
 export const Header = () => {
   const [user] = useAuthState(auth);
@@ -11,11 +12,11 @@ export const Header = () => {
     <div>
          <Navbar bg="black" variant="dark" expand="lg">
     <Container>
-    <Navbar.Brand to='/'>Warrior's-Arsenal</Navbar.Brand>
+    <Navbar.Brand to='/inventory'>Warrior's-Arsenal</Navbar.Brand>
     <Navbar.Toggle aria-controls="basic-navbar-nav" />
     <Navbar.Collapse id="basic-navbar-nav">
     <Nav className="ms-auto">
-      <Link className='text-white text-decoration-none me-3' to='/'>Home</Link>
+      <Link className='text-white text-decoration-none me-3' to='/inventory'>Home</Link>
       <Link className='text-white text-decoration-none me-3' to='/myitems'>My Items</Link>
       <Link className='text-white text-decoration-none me-3' to='/manageinventory'>Manage Inventory</Link>
       <Link className='text-white text-decoration-none me-3' to='/additems'>Add Items</Link>
@@ -25,7 +26,7 @@ export const Header = () => {
     </Navbar.Collapse>
     </Container>
   </Navbar>
-
+    <Toaster></Toaster>
     </div>
   )
 }

@@ -1,0 +1,14 @@
+.inventory-item{
+    transform: scale(.90);
+}
+.update-btn{
+    border: 1px solid black;
+    outline: 0;
+    padding: 8px;
+    background-color: white;
+    font-weight: 500;
+}
+.update-btn:hover{
+    background-color: rgb(46, 45, 45);
+    color: white;
+}

@@ -3,6 +3,7 @@ import React from 'react'
 import { auth } from '../../firebase.init';
 import './AddItems.module.css'
 import { useAuthState } from 'react-firebase-hooks/auth';
+import toast from 'react-hot-toast';
 
 
 export const AddItems = () => {
@@ -10,6 +11,7 @@ export const AddItems = () => {
   console.log(user);
   const handleAddItem = (event)=>{
     event.preventDefault();
+    const email = user.email;
     const name = event.target.name.value;
     const price = event.target.price.value;
     const image = event.target.image.value;
@@ -17,18 +19,21 @@ export const AddItems = () => {
     const quantity = event.target.quantity.value;
     const supplier = event.target.supplier.value;
 
-    const item = {name,price,image,description,quantity,supplier};
+    const item = {email,name,price,image,description,quantity,supplier};
 
    axios.post('http://localhost:5000/items',item)
    .then(function (response) {
     console.log(response);
+    toast.success('product added')
     })
     .catch(function (error) {
         console.log(error);
     });
+    event.target.reset();
   }
   return (
-    <div className='d-flex justify-content-center mt-5'>
+    <div>
+      <div className='d-flex justify-content-center mt-5'>
       <div className='shadow-sm'>
       <div className='text-black form-body'>
         <form onSubmit={handleAddItem} className='d-flex flex-column p-5'>
@@ -44,6 +49,7 @@ export const AddItems = () => {
           </div>
         </form>
       </div>
+    </div>
     </div>
     </div>
   )
