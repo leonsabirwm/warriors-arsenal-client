@@ -1,0 +1,14 @@
+.my-item{
+    transform: scale(.90);
+}
+.my-item p {
+    font-size: 18px;
+    font-weight: 500;
+}
+.my-item button{
+    background-color: rgb(206, 81, 81);
+    border: 0;
+    outline: 0;
+    padding: 10px 14px;
+    border-radius: 5%;
+}

@@ -6,7 +6,7 @@ export const InventoryItem = ({item}) => {
   const navigate = useNavigate();
   return (
     <div className='col-4 inventory-item'>
-        <div className='row shadow-sm d-flex align-items-center justify-content-center ps-4'>
+        <div className='row shadow d-flex align-items-center justify-content-center ps-4'>
             <div className='col-7 py-5 d-flex flex-column align-items-start justify-content-center'>
               <div><img className='img-fluid w-50' src={item.image} alt="" /></div>
               <h4 className='my-3'>{item.name}</h4>
@@ -16,11 +16,11 @@ export const InventoryItem = ({item}) => {
               </div>
             </div>
 
-            <div className='col-5 py-5 bg-light'>
+            <div className='col-5 py-5 bg-white'>
               <div className='py-5 d-flex flex-column align-items-start justify-content-evenly'>
               <h5 className='shadow-sm m-2 p-2'>Price : $ {item.price}</h5>
               <h5 className='shadow-sm m-2 p-2'>Quantity : {item.quantity}</h5>
-              <h5 className='shadow-sm m-2 p-2'>Supplier Name : {item.supplier}</h5>
+              <h5 className='shadow-sm m-2 p-2'>Supplier : {item.supplier}</h5>
               </div>
             </div>
         </div>

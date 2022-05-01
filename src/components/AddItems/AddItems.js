@@ -34,7 +34,7 @@ export const AddItems = () => {
   return (
     <div>
       <div className='d-flex justify-content-center mt-5'>
-      <div className='shadow-sm'>
+      <div className='shadow'>
       <div className='text-black form-body'>
         <form onSubmit={handleAddItem} className='d-flex flex-column p-5'>
          <h3 className='mb-3 text-left'> <span className='fs-2 fw-bold'>|</span> Add Item</h3>

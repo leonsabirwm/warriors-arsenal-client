@@ -12,7 +12,7 @@ import { UpdateItem } from './components/UpdateItem/UpdateItem';
 
 function App() {
   return (
-    <div className="App">
+    <div className="App bg-light">
       <Header></Header>
       <Routes>
         <Route path='/inventory'element={<Home></Home>}></Route>

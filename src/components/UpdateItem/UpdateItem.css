@@ -2,3 +2,10 @@
     border: 4px solid rgb(34, 29, 29);
     max-width: 35vw;
 }
+.item-description{
+    font-size: 18px;
+    color: grey;
+}
+.detail-disp{
+    transform: scale(.80);
+}

@@ -8,7 +8,7 @@ export const UpdateItem = () => {
     const [item,setItem] = useState({});
 
     useEffect(()=>{
-        fetch(`http://localhost:5000/myitem/${id}`)
+        fetch(`http://localhost:5000/inventoryitem/${id}`)
         .then(res => res.json())
         .then(data =>setItem(data));
     },[])
@@ -16,16 +16,16 @@ export const UpdateItem = () => {
   return (
     <div>
        <div className='row mx-5 d-flex align-items-center justify-content-center'>
-           <div className='col-12 col-lg-6'>
+           <div className='col-12 col-lg-6 d-flex flex-column align-items-center justify-content-center'>
                <div className='shadow d-flex justify-content-center py-5 mt-4 item-image'>
                    <img className='img-fluid' src={item.image} alt="" />
                </div>
                <div className='shadow my-5 p-4'>
                    <h3 className='text-center my-3'>Item Description</h3>
-                   <p>{item.description}</p>
+                   <p className='item-description'>{item.description}</p>
                </div>
            </div>
-           <div className='col-12 col-lg-6'>
+           <div className='col-12 col-lg-6 detail-disp'>
                <div className='text-center shadow p-4 m-4'>
                    <h1><HiCollection></HiCollection></h1>
                    <h3 className=''>{item.name}</h3>
