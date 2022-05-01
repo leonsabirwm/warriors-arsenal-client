@@ -18,10 +18,20 @@ export const Header = () => {
     <Nav className="ms-auto">
       <Link className='text-white text-decoration-none me-3' to='/inventory'>Home</Link>
       <Link className='text-white text-decoration-none me-3' to='/myitems'>My Items</Link>
-      <Link className='text-white text-decoration-none me-3' to='/manageinventory'>Manage Inventory</Link>
-      <Link className='text-white text-decoration-none me-3' to='/additems'>Add Items</Link>
-      <Link className='text-white text-decoration-none me-3' to='/blogs'>Blogs</Link>
-     {user?<button onClick={()=>signOut(auth)} className='bg-black text-white border-0'>Log Out</button> :  <Link className='text-white text-decoration-none' to='/login'>Log In</Link>}
+     {
+       user? 
+       <Link className='text-white text-decoration-none me-3' to='/manageinventory'>Manage Inventory</Link>
+      
+       :''
+     }
+     {
+       user? 
+       <Link className='text-white text-decoration-none me-3' to='/additems'>Add Items</Link>
+      
+       :''
+     }
+      <Link className='text-white text-decoration-none me-2' to='/blogs'>Blogs</Link>
+     {user?<button onClick={()=>signOut(auth)} className='bg-black text-white border-0'><span className='fw-light'>Log Out</span></button> :  <Link className='text-white text-decoration-none' to='/login'>Log In</Link>}
     </Nav>
     </Navbar.Collapse>
     </Container>

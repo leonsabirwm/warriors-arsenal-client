@@ -3,10 +3,11 @@ import React, { useEffect, useState } from 'react'
 import { Table } from 'react-bootstrap';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom'
+import swal from 'sweetalert';
 import './ManageInventory.css'
 
 export const ManageInventory = () => {
-  const [takeReload,setTakeReload] = useState(false);
+  // const [takeReload,setTakeReload] = useState(false);
   const navigate = useNavigate();
   const [items,setItems] = useState([]);
 
@@ -14,18 +15,35 @@ export const ManageInventory = () => {
     fetch('http://localhost:5000/items')
     .then(res=> res.json())
     .then(data=>setItems(data));
-  },[takeReload])
+  },[])
 
   const handleDelete = (id)=>{
-    axios.delete(`http://localhost:5000/items/${id}`)
-    .then(function (response) {
-      console.log(response);
-      toast.success('product deleted',{id:'fr5'})
-      })
-      .catch(function (error) {
-          console.log(error);
-      });
-    setTakeReload(!takeReload);
+    swal({
+      title: "Are you sure?",
+      text: "Dleletion causes parmanent removal of item!",
+      icon: "error",
+      buttons: true,
+      dangerMode: true,
+    })
+    .then((willDelete) => {
+      if (willDelete) {
+        axios.delete(`http://localhost:5000/items/${id}`)
+        .then(function (response) {
+          console.log(response);
+          })
+          .catch(function (error) {
+              console.log(error);
+          });
+        swal("Your item has been deleted!", {
+          icon: "success",
+        });
+
+        const restItems = items.filter(item =>item._id !== id)
+        setItems(restItems);
+      } else {
+        swal("Your selected item is not removed !!!");
+      }
+    });
   }
   return (
     <div>

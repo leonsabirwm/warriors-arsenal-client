@@ -9,3 +9,7 @@
 .detail-disp{
     transform: scale(.80);
 }
+.quantity-input{
+    min-height: 3rem;
+    min-width: 8rem;
+}

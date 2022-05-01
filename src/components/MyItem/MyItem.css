@@ -1,5 +1,6 @@
 .my-item{
     transform: scale(.90);
+    min-height: 20rem;
 }
 .my-item p {
     font-size: 18px;

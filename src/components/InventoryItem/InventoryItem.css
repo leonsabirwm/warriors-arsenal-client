@@ -1,5 +1,9 @@
 .inventory-item{
     transform: scale(.90);
+     /* min-height: 600px; */
+}
+.left-segment{
+    min-height: 30rem;
 }
 .update-btn{
     border: 1px solid black;

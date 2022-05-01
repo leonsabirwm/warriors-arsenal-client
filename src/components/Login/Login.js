@@ -1,12 +1,13 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { auth } from '../../firebase.init';
 import './Login.module.css';
 
 
 
 export const Login = () => {
+  let location = useLocation();
   const navigate = useNavigate();
   const [
     signInWithEmailAndPassword,
@@ -16,6 +17,13 @@ export const Login = () => {
   ] = useSignInWithEmailAndPassword(auth);
   console.log(user);
   
+  let from = location.state?.from?.pathname || "/";
+  
+  useEffect(()=>{
+    if(user){
+      navigate(from);
+    }
+  },[user])
   const handleLogin = (event)=>{
 
     event.preventDefault();
@@ -39,7 +47,7 @@ export const Login = () => {
           </div>
         </form>
         <div className='d-flex align-items-center justify-content-start w-25 mt-4'>
-          <p className='me-3 text-nowrap'>New to Warrior Arsenal? <button onClick={()=>navigate('/signup')} className='text-nowrap border border-0 bg-white text-primary'>Sign Up</button></p> 
+          <p className='me-3 text-nowrap'>New to Warrior Arsenal? <button onClick={()=>navigate('/signup')} className='text-nowrap border border-0 bg-light text-primary'>Sign Up</button></p> 
           <p></p>
         </div>
         </div>

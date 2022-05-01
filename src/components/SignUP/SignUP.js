@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { auth } from '../../firebase.init';
 import './SignUP.module.css';
 
 
 export const SignUP = () => {
-
+  let location = useLocation();
   const navigate = useNavigate();
   const [generalError,setGeneralError] = useState({
     passwordError:'',
@@ -26,10 +26,11 @@ export const SignUP = () => {
   })
 
   console.log(user);
+  let from = location.state?.from?.pathname || "/";
   
   useEffect(()=>{
     if(user){
-      navigate('/');
+      navigate(from);
     }
   },[user])
   const handlePasswordBlur = (event)=>{
@@ -61,6 +62,8 @@ export const SignUP = () => {
     if(!validEmail){
       setGeneralError({...generalError,emailError:'Please enter a valid email'})
     }
+
+   
   }
   return (
     <div>
@@ -84,7 +87,7 @@ export const SignUP = () => {
           </div>
         </form>
         <div className='d-flex align-items-center justify-content-start w-25 mt-4'>
-          <p className='me-3 text-nowrap'>Was here previously? <button onClick={()=>navigate('/login')} className='text-nowrap border border-0 bg-white text-primary'>Log In</button></p> 
+          <p className='me-3 text-nowrap'>Was here previously? <button onClick={()=>navigate('/login')} className='text-nowrap border border-0 bg-light text-primary'>Log In</button></p> 
           <p></p>
         </div>
         </div>
