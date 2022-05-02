@@ -5,9 +5,14 @@ import { auth } from '../../firebase.init';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { signOut } from 'firebase/auth';
 import { Toaster } from 'react-hot-toast';
+import LoadingBar from 'react-top-loading-bar';
+import { BarContext } from './../../App';
+import { useContext} from 'react';
+
 
 export const Header = () => {
   const [user] = useAuthState(auth);
+  const  [progress,setProgress] = useContext(BarContext);
   return (
     <div>
          <Navbar bg="black" variant="dark" expand="lg">
@@ -37,6 +42,8 @@ export const Header = () => {
     </Container>
   </Navbar>
     <Toaster></Toaster>
+    <LoadingBar color='#f11946' progress={progress}
+    onLoaderFinished={() => setProgress(0)} />
     </div>
   )
 }

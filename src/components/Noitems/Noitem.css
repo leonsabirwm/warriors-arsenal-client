@@ -1,0 +1,7 @@
+@media only screen and (max-width: 576px) {
+    .noitem-card {
+       /* transform: scale(.50); */
+       font-size: 12px;
+    }
+    
+  }

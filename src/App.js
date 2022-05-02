@@ -10,11 +10,15 @@ import { ManageInventory } from './components/ManageInventory/ManageInventory';
 import { MyItems } from './components/MyItems/MyItems';
 import { UpdateItem } from './components/UpdateItem/UpdateItem';
 import { RequireAuth } from './components/RequireAuth/RequireAuth';
+import { createContext, useState } from 'react';
 
+export const BarContext = createContext();
 function App() {
+  const [progress,setProgress] = useState(0);
   return (
     <div className="App bg-light">
-      <Header></Header>
+     <BarContext.Provider value={[progress,setProgress]}>
+     <Header></Header>
       <Routes>
         <Route path='/'element={<Home></Home>}></Route>
         <Route path='/inventory'element={<Home></Home>}></Route>
@@ -38,6 +42,7 @@ function App() {
         <Route path='/signup' element={<SignUP></SignUP>}></Route>
         <Route path='/manageinventory' element={<ManageInventory></ManageInventory>}></Route>
       </Routes>
+     </BarContext.Provider>
     </div>
   );
 }

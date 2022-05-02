@@ -1,20 +1,23 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Table } from 'react-bootstrap';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom'
 import swal from 'sweetalert';
 import './ManageInventory.css'
+import { BarContext } from './../../App';
 
 export const ManageInventory = () => {
   // const [takeReload,setTakeReload] = useState(false);
   const navigate = useNavigate();
   const [items,setItems] = useState([]);
-
+  const  [progress,setProgress] = useContext(BarContext);
   useEffect(()=>{
+    setProgress(30);
     fetch('http://localhost:5000/items')
     .then(res=> res.json())
     .then(data=>setItems(data));
+    setProgress(100)
   },[])
 
   const handleDelete = (id)=>{
@@ -50,10 +53,11 @@ export const ManageInventory = () => {
      <div className='d-flex justify-content-start my-5 mx-5'>
        <button onClick={()=>navigate('/additems')} className='add-button button-38'>Add Items</button>
      </div>
-     <div>
-     <Table striped bordered hover variant="dark">
+     <div className='d-flex justify-content-center align-items-center'>
+     <Table striped bordered hover variant="light" className='table'>
   <thead className='align-middle text-center'>
     <tr>
+      <th>Index</th>
       <th>Item Name</th>
       <th>Price</th>
       <th>Image</th>
@@ -67,6 +71,7 @@ export const ManageInventory = () => {
       items.map(item =>{
        return <tr key={item._id} className='align-middle text-center'>
         
+        <td>{items.indexOf(item) + 1}</td>
         <td>{item.name}</td>
         <td>{item.price}</td>
         <td><img className='table-image' src={item.image}/></td>

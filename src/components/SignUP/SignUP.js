@@ -1,20 +1,23 @@
 import React, { useEffect, useState } from 'react'
-import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { useCreateUserWithEmailAndPassword, useSignInWithGoogle, useAuthState } from 'react-firebase-hooks/auth';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { auth } from '../../firebase.init';
-import './SignUP.module.css';
+import './SignUP.css';
+import googleLogo from '../../../src/images/google-logo.png'
 
 
 export const SignUP = () => {
+  const [user] = useAuthState(auth);
   let location = useLocation();
   const navigate = useNavigate();
   const [generalError,setGeneralError] = useState({
     passwordError:'',
     emailError:''
   })
+  const [signInWithGoogle] = useSignInWithGoogle(auth);
   const [
     createUserWithEmailAndPassword,
-    user,
+    ,
     loading,
     error,
   ] = useCreateUserWithEmailAndPassword(auth);
@@ -65,15 +68,18 @@ export const SignUP = () => {
 
    
   }
+  const handleGoogleSignIn = ()=>{
+    signInWithGoogle();
+  }
   return (
     <div>
-    <div className='shadow-lg mt-5 w-75 mx-auto p-4 d-flex flex-column align-items-center'>
+    <div className='shadow-lg my-5 w-75 mx-auto p-4 d-flex flex-column align-items-center'>
         <div className='my-5'>
         <form onSubmit={handleSignUP} className='d-flex flex-column'>
           <div className='d-flex flex-column'>
           <h3 className='my-4'>Please Sign Up</h3>
           <input type="text" className='mb-4 border border-dark' placeholder='Your Name' name='name' required/>
-          <input onFocus={handleEmailFocus} type="text" className='mb-4 border border-dark' placeholder='Your Email' name='email' required/>
+          <input onFocus={handleEmailFocus} type="text" className='mb-2 border border-dark' placeholder='Your Email' name='email' required/>
           {
             <p className='text-danger'>{generalError.emailError}</p>
           }
@@ -90,6 +96,16 @@ export const SignUP = () => {
           <p className='me-3 text-nowrap'>Was here previously? <button onClick={()=>navigate('/login')} className='text-nowrap border border-0 bg-light text-primary'>Log In</button></p> 
           <p></p>
         </div>
+        <div className='d-flex align-items-center justify-content-center'>
+          <div className='border border-top border-dark w-25'></div>
+          <div>
+            <p className='mx-2 fs-5'>OR</p>
+          </div>
+
+          <div className='border border-top border-dark w-25'></div>
+
+        </div>
+        <div className='text-center mt-3'><button onClick={handleGoogleSignIn} className='p-2 border border-0 bg-dark text-white'> <img className='google-logo' src={googleLogo} alt="" /> Continue With Google</button></div>
         </div>
         
         </div>

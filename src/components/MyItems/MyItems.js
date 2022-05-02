@@ -1,16 +1,20 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useAuthState } from 'react-firebase-hooks/auth';
 import swal from 'sweetalert';
+import { BarContext } from '../../App';
 import { auth } from '../../firebase.init';
 import { MyItem } from '../MyItem/MyItem';
-import { Loading } from './../Loading/Loading';
+import { Noitems } from './../Noitems/Noitems';
 
 export const MyItems = () => {
   const [takeReload,setTakeReload] = useState(false);
   const [myEmail,setMyEmail] = useState('');
   const [user, loading, error] = useAuthState(auth);
   const [myitems,setmyItems] = useState([]);
+  const  [progress,setProgress] = useContext(BarContext);
+  const [noitem,setNoitem] = useState(false)
+
   console.log(user);
   console.log(myEmail);
 
@@ -24,12 +28,25 @@ export const MyItems = () => {
   },[user])
 
   useEffect(()=>{
-  
-   fetch(`http://localhost:5000/myitems?email=${myEmail}`)
+    setProgress(30)
+   fetch(`http://localhost:5000/myitems?email=${user.email}`)
   .then(res => res.json())
-  .then(data => setmyItems(data))
+  .then(data => {
+    setmyItems(data)
+    if(!data.length){
+      setNoitem(true)
+    }
+  })
+  setProgress(100);
   },[takeReload]);
 
+  // setTimeout(()=>{
+  //   if(!myitems.length){
+  //     console.log(myitems.length)
+  //     setNoitem(true)
+  //   }
+  // },4000)
+ 
   const handleDelete = (id)=>{
     swal({
       title: "Are you sure?",
@@ -47,24 +64,30 @@ export const MyItems = () => {
           .catch(function (error) {
               console.log(error);
           });
-        swal("Your item has been deleted!", {
-          icon: "success",
-        });
-
-        const restItems = myitems.filter(item =>item._id !== id)
-        setmyItems(restItems);
+          swal("Your item has been deleted!", {
+            icon: "success",
+          });
+          
+          const restItems = myitems.filter(item =>item._id !== id)
+          setmyItems(restItems);
+          if(myitems.length < 2){
+            setNoitem(true)
+          } ;
       } else {
         swal("Your selected item is not removed !!!");
       }
     });
    
   }
+  console.log(noitem);
+
   return (
-    <div>
+    <div className=''>
+      <h3 className='mt-4 text-nowrap mx-auto w-25 text-center shadow-sm p-4'>My Items</h3>
+
      {
-       myitems.length < 1 ? <Loading></Loading> : ""
+       noitem ? <Noitems></Noitems> : ''
      }
-      <h3 className='mt-4 text-center'>My Items</h3>
         <div className='row mt-3 d-flex justify-content-center align-items-center mx-auto'>
         
          {
