@@ -4,17 +4,32 @@ import toast from 'react-hot-toast';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { auth } from '../../firebase.init';
 import { Loading } from '../Loading/Loading';
-import './Login.module.css';
-import googleLogo from '../../../src/images/google-logo.png'
+import './Login.css';
+import googleLogo from '../../../src/images/google-logo.png';
+import { useSendPasswordResetEmail } from 'react-firebase-hooks/auth';
 
 
 
 
 export const Login = () => {
+  const [sendPasswordResetEmail, sending, passResetError] = useSendPasswordResetEmail(
+    auth
+  );
+  const [resetEmail,setResetEmail] = useState('');
   const [user] = useAuthState(auth);
   const [signInWithGoogle] = useSignInWithGoogle(auth);
 
+  const handlePasswordReset=()=>{
+    if(resetEmail){
 
+      sendPasswordResetEmail(resetEmail)
+    }
+    else{
+      toast.error('Fill the email field to continue',{
+        id:'jgj98', style: {backgroundColor:'black',color:'white'},
+      });
+    }
+  }
   let location = useLocation();
   const navigate = useNavigate();
   const handleGoogleSignIn = ()=>{
@@ -26,7 +41,40 @@ export const Login = () => {
     loading,
     error,
   ] = useSignInWithEmailAndPassword(auth);
+  console.log(passResetError?.code)
+  useEffect(()=>{
+    if(sending){
+      toast.error('Sending Password Reset Email',{
+        id:'jgj98',icon:'🚀', style: {backgroundColor:'black',color:'white'},
+      });
+    }
+  },[sending])
 
+  useEffect(()=>{
+    if(passResetError){
+
+      console.log(passResetError.code);
+      switch(passResetError.code){
+        case("auth/wrong-password"): 
+        toast.error('Wrong Password',{
+          id:'jgj98', style: {backgroundColor:'black',color:'white'},
+        });
+        break;
+        case("auth/invalid-email"): 
+        toast.error('Invalid Email',{
+          id:'jgj98',icon: '😢', style: {backgroundColor:'black',color:'white'},
+        });
+        break;
+        case("auth/user-not-found"): 
+        toast.error('User not found',{
+          id:'jgj98',  icon: '😢', style: {backgroundColor:'black',color:'white'},
+        });
+        break;
+        default: toast.error('Something went wrong',{id:"gj45",style: {backgroundColor:'black',color:'white'}},);
+        break;
+      }
+    }
+  },[passResetError])
   useEffect(()=>{
     if(error){
 
@@ -69,15 +117,16 @@ export const Login = () => {
     // const user = {name,email,password};
     signInWithEmailAndPassword(email,password);
   }
+  console.log(resetEmail);
   return (
     <div>
       {loading?<Loading></Loading>:
-    <div className='shadow-lg mt-5 w-75 mx-auto p-4 d-flex flex-column align-items-center'>
+    <div className='shadow-lg my-5 container  mx-auto p-4 d-flex flex-column align-items-center .login-component'>
         <div className='my-5'>
         <form onSubmit={handleLogin} className='d-flex flex-column'>
           <div className='d-flex flex-column'>
           <h3 className='my-4'>Please Login</h3>
-          <input type="text" className='mb-4 border border-dark' placeholder='Your Email' name='email' required/>
+          <input onBlur={(e)=>setResetEmail(e.target.value)} type="text" className='mb-4 border border-dark' placeholder='Your Email' name='email' required/>
           <input type="password" className='mb-4 border border-dark' placeholder='Password' name='password' required/>
           </div>
           <div>
@@ -85,6 +134,10 @@ export const Login = () => {
           </div>
         </form>
         <div className='d-flex align-items-center justify-content-start w-25 mt-4'>
+          <p className='me-3 text-nowrap'>Forgot Password? <button onClick={handlePasswordReset} className='text-nowrap border border-0 bg-light text-primary'>Reset Password</button></p> 
+          <p></p>
+        </div>
+        <div className='d-flex align-items-center justify-content-start w-25 mt-1'>
           <p className='me-3 text-nowrap'>New to Warrior Arsenal? <button onClick={()=>navigate('/signup')} className='text-nowrap border border-0 bg-light text-primary'>Sign Up</button></p> 
           <p></p>
         </div>

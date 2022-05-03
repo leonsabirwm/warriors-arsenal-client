@@ -28,7 +28,7 @@ export const MyItems = () => {
   },[user])
 
   useEffect(()=>{
-    setProgress(30)
+    setProgress(10)
    fetch(`http://localhost:5000/myitems?email=${user.email}`)
   .then(res => res.json())
   .then(data => {

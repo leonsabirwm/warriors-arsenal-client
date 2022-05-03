@@ -1,41 +1,54 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import { HiCurrencyBangladeshi,HiTruck,HiOutlineCalculator,HiInformationCircle,HiRefresh,HiClipboardList } from "react-icons/hi";
 import './UpdateItem.css'
 import axios from 'axios';
 import toast from 'react-hot-toast';
+import { BarContext } from './../../App';
 
 export const UpdateItem = () => {
     const navigate = useNavigate();
+  const  [progress,setProgress] = useContext(BarContext);
     const id = useParams().id;
     const [item,setItem] = useState({});
 
     useEffect(()=>{
+        setProgress(10)
         fetch(`http://localhost:5000/inventoryitem/${id}`)
         .then(res => res.json())
         .then(data =>setItem(data));
+        setProgress(100)
     },[])
     
     const handleShipped = ()=>{
         const previousQuantity = item.quantity;
-        const newQuantity = parseInt(previousQuantity) - 1;
-        setItem({...item,quantity:newQuantity});
-        console.log((newQuantity));
-        axios.put(`http://localhost:5000/inventoryitem/${id}`,{newQuantity})
-        .then(function (response) {
-            console.log(response);
-            toast.success('Item Shipped',{id:"4hyu"})
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
+        if(previousQuantity <= 0) toast.error("Stock Out",{
+            style:{
+                backgroundColor:'black',color:'white'
+            }
+        });
+        if(previousQuantity > 0){
+            const newQuantity = parseInt(previousQuantity) - 1;
+            setItem({...item,quantity:newQuantity});
+            console.log((newQuantity));
+            axios.put(`http://localhost:5000/inventoryitem/${id}`,{newQuantity})
+            .then(function (response) {
+                console.log(response);
+                toast.success('Item Shipped',{id:"4hyu"})
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
+        }
+       
             // event.target.reset();
     }
 
     const handleRestock = (event)=>{
         event.preventDefault();
         const quantity = event.target.quantity.value;
-        const previousQuantity = item.quantity;
+        if(quantity>0){
+            const previousQuantity = item.quantity;
         const newQuantity = parseInt(previousQuantity) + parseInt(quantity);
         setItem({...item,quantity:newQuantity});
         console.log((newQuantity));
@@ -48,6 +61,15 @@ export const UpdateItem = () => {
                 console.log(error);
             });
             event.target.reset();
+        }
+        else{
+            toast.error("Insert a valid quantity",{
+                id:'uy76',
+                style:{
+                    backgroundColor:'black',color:'white'
+                }
+            });
+        }
     }
   return (
     <div>
@@ -96,7 +118,7 @@ export const UpdateItem = () => {
                </div>
                   <div className='text-center shadow p-4 m-4'> 
                   <h1><HiOutlineCalculator></HiOutlineCalculator></h1>  
-                   <h4 className=''>Quantity : {item.quantity}</h4>
+                   <h4 className=''>Quantity : {item.quantity ? item.quantity : "N/A"}</h4>
                   </div>
 
                 <div className='shadow p-5 d-flex flex-column align-items-center'>

@@ -13,7 +13,7 @@ export const ManageInventory = () => {
   const [items,setItems] = useState([]);
   const  [progress,setProgress] = useContext(BarContext);
   useEffect(()=>{
-    setProgress(30);
+    setProgress(10);
     fetch('http://localhost:5000/items')
     .then(res=> res.json())
     .then(data=>setItems(data));

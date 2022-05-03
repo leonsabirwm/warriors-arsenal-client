@@ -11,6 +11,7 @@ import { MyItems } from './components/MyItems/MyItems';
 import { UpdateItem } from './components/UpdateItem/UpdateItem';
 import { RequireAuth } from './components/RequireAuth/RequireAuth';
 import { createContext, useState } from 'react';
+import { NotFound } from './components/NotFound/NotFound';
 
 export const BarContext = createContext();
 function App() {
@@ -41,7 +42,10 @@ function App() {
         <Route path='/login' element={<Login></Login>}></Route>
         <Route path='/signup' element={<SignUP></SignUP>}></Route>
         <Route path='/manageinventory' element={<ManageInventory></ManageInventory>}></Route>
+      
+      <Route path='*' element={<NotFound></NotFound>}></Route>
       </Routes>
+
      </BarContext.Provider>
     </div>
   );
