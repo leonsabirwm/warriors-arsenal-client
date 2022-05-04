@@ -5,6 +5,7 @@
 .left-segment{
     min-height: 30rem;
 }
+
 .update-btn{
     border: 1px solid black;
     background-color: rgb(46, 45, 45);
@@ -17,4 +18,12 @@
 .update-btn:hover{
     background-color: white;
     color:black;
+}
+
+@media only screen and (max-width: 576px){
+.left-segment h5{
+    font-size: 13px;
+    /* font-weight: lighter; */
+}
+
 }

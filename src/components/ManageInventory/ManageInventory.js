@@ -1,7 +1,6 @@
 import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react'
 import { Table } from 'react-bootstrap';
-import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom'
 import swal from 'sweetalert';
 import './ManageInventory.css'
@@ -50,8 +49,14 @@ export const ManageInventory = () => {
   }
   return (
     <div>
-     <div className='d-flex justify-content-start my-5 mx-5'>
+     <div className='shadow w-50 mx-auto py-4 d-flex flex-column align-items-center justify-content-center my-5 px-4'>
+       <div className='my-3'>
+         <h5 className=''>Total Items : {items.length}</h5>
+
+       </div>
+       <div>
        <button onClick={()=>navigate('/additems')} className='add-button button-38'>Add Items</button>
+       </div>
      </div>
      <div className='d-flex justify-content-center align-items-center'>
      <Table striped bordered hover variant="light" className='table'>

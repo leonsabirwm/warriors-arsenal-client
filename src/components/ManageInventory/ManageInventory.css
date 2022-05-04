@@ -46,7 +46,7 @@
 }
 @media only screen and (max-width: 576px) {
   .table {
-     transform: scale(.90);
+     transform: scale(.80);
      
   }
   

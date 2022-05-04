@@ -12,6 +12,8 @@ import { RequireAuth } from './components/RequireAuth/RequireAuth';
 import { createContext, useState } from 'react';
 import { NotFound } from './components/NotFound/NotFound';
 import Blogs from './components/Blogs/Blogs';
+import { Banner } from './components/Banner/Banner';
+import { Footer } from './components/Footer/Footer';
 
 export const BarContext = createContext();
 function App() {
@@ -44,6 +46,8 @@ function App() {
       
       <Route path='*' element={<NotFound></NotFound>}></Route>
       </Routes>
+    <Footer></Footer>
+
 
      </BarContext.Provider>
     </div>

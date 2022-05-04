@@ -19,6 +19,8 @@ This is my eleventh assignment for Programming Hero Web Course Batch-5.This is a
 * React Heroicon
 * React top-loading bar
 * Sweet Alert
+* axios
 
-## Live Site - [Warrior's Warehouse](https://www.example.com)
+
+## Live Site - [Warrior's Warehouse](https://warriors-arsenal.web.app/)
 https://warriors-arsenal.web.app/
