@@ -22,7 +22,6 @@ function App() {
      <Header></Header>
       <Routes>
         <Route path='/'element={<Home></Home>}></Route>
-        <Route path='/inventory'element={<Home></Home>}></Route>
         <Route path='/inventory/:id'element={
           <RequireAuth>
             <UpdateItem></UpdateItem>

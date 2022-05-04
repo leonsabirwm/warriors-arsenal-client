@@ -17,11 +17,11 @@ export const Header = () => {
     <div>
          <Navbar bg="black" variant="dark" expand="lg">
     <Container>
-    <Navbar.Brand to='/inventory'>Warrior's-Arsenal</Navbar.Brand>
+    <Navbar.Brand to='/'>Warrior's-Arsenal</Navbar.Brand>
     <Navbar.Toggle aria-controls="basic-navbar-nav" />
     <Navbar.Collapse id="basic-navbar-nav">
     <Nav className="ms-auto">
-      <Link className='text-white text-decoration-none me-3' to='/inventory'>Home</Link>
+      <Link className='text-white text-decoration-none me-3' to='/'>Home</Link>
       <Link className='text-white text-decoration-none me-3' to='/myitems'>My Items</Link>
      {
        user? 

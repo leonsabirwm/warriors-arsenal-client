@@ -82,8 +82,8 @@ export const MyItems = () => {
   console.log(noitem);
 
   return (
-    <div className=''>
-      <h3 className='mt-4 text-nowrap mx-auto w-25 text-center shadow-sm p-4'>My Items</h3>
+    <div className='d-flex justify-content-center align-items-center flex-column'>
+      <h3 className='mt-4 text-nowrap d-inline-block text-center shadow-sm p-4'>My Items</h3>
 
      {
        noitem ? <Noitems></Noitems> : ''

@@ -12,7 +12,7 @@ export const InventoryItem = ({item}) => {
               <h4 className='my-3'>{item.name}</h4>
               <p>{item.description}</p>
               <div>
-                <button onClick={()=>navigate(item._id)} className='update-btn'>Update</button>
+                <button onClick={()=>navigate(`inventory/${item._id}`)} className='update-btn'>Update</button>
               </div>
             </div>
 
