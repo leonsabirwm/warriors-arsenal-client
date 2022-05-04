@@ -14,7 +14,7 @@ export const UpdateItem = () => {
 
     useEffect(()=>{
         setProgress(10)
-        fetch(`http://localhost:5000/inventoryitem/${id}`)
+        fetch(`https://obscure-waters-67643.herokuapp.com/inventoryitem/${id}`)
         .then(res => res.json())
         .then(data =>setItem(data));
         setProgress(100)
@@ -31,7 +31,7 @@ export const UpdateItem = () => {
             const newQuantity = parseInt(previousQuantity) - 1;
             setItem({...item,quantity:newQuantity});
             console.log((newQuantity));
-            axios.put(`http://localhost:5000/inventoryitem/${id}`,{newQuantity})
+            axios.put(`https://obscure-waters-67643.herokuapp.com/inventoryitem/${id}`,{newQuantity})
             .then(function (response) {
                 console.log(response);
                 toast.success('Item Shipped',{id:"4hyu"})
@@ -52,7 +52,7 @@ export const UpdateItem = () => {
         const newQuantity = parseInt(previousQuantity) + parseInt(quantity);
         setItem({...item,quantity:newQuantity});
         console.log((newQuantity));
-        axios.put(`http://localhost:5000/inventoryitem/${id}`,{newQuantity})
+        axios.put(`https://obscure-waters-67643.herokuapp.com/inventoryitem/${id}`,{newQuantity})
         .then(function (response) {
             console.log(response);
             toast.success(`${quantity} item restocked`,{id:"4hyu"})

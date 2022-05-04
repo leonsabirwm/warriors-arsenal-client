@@ -10,7 +10,7 @@ export const Inventory = () => {
 
   useEffect(()=>{
     setProgress(10)
-    fetch('http://localhost:5000/items')
+    fetch('https://obscure-waters-67643.herokuapp.com/items')
     .then(res=> res.json())
     .then(data=>setItems(data.slice(0,6)));
     setProgress(100);

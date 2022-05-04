@@ -21,7 +21,7 @@ export const AddItems = () => {
 
     const item = {email,name,price,image,description,quantity,supplier};
 
-   axios.post('http://localhost:5000/items',item)
+   axios.post('https://obscure-waters-67643.herokuapp.com/items',item)
    .then(function (response) {
     console.log(response);
     toast.success('product added')

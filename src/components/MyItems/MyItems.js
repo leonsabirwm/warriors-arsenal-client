@@ -29,7 +29,7 @@ export const MyItems = () => {
 
   useEffect(()=>{
     setProgress(10)
-   fetch(`http://localhost:5000/myitems?email=${user.email}`)
+   fetch(`https://obscure-waters-67643.herokuapp.com/myitems?email=${user.email}`)
   .then(res => res.json())
   .then(data => {
     setmyItems(data)
@@ -57,7 +57,7 @@ export const MyItems = () => {
     })
     .then((willDelete) => {
       if (willDelete) {
-        axios.delete(`http://localhost:5000/items/${id}`)
+        axios.delete(`https://obscure-waters-67643.herokuapp.com/items/${id}`)
         .then(function (response) {
           console.log(response);
           })

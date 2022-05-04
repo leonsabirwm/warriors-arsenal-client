@@ -14,7 +14,7 @@ export const ManageInventory = () => {
   const  [progress,setProgress] = useContext(BarContext);
   useEffect(()=>{
     setProgress(10);
-    fetch('http://localhost:5000/items')
+    fetch('https://obscure-waters-67643.herokuapp.com/items')
     .then(res=> res.json())
     .then(data=>setItems(data));
     setProgress(100)
@@ -30,7 +30,7 @@ export const ManageInventory = () => {
     })
     .then((willDelete) => {
       if (willDelete) {
-        axios.delete(`http://localhost:5000/items/${id}`)
+        axios.delete(`https://obscure-waters-67643.herokuapp.com/items/${id}`)
         .then(function (response) {
           console.log(response);
           })
