@@ -1,7 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import { AddItems } from './components/AddItems/AddItems';
-import { Blogs } from './components/Blogs/Blogs';
 import { Header } from './components/Header/Header';
 import { Home } from './components/Home/Home';
 import { Login } from './components/Login/Login';
@@ -12,6 +11,7 @@ import { UpdateItem } from './components/UpdateItem/UpdateItem';
 import { RequireAuth } from './components/RequireAuth/RequireAuth';
 import { createContext, useState } from 'react';
 import { NotFound } from './components/NotFound/NotFound';
+import Blogs from './components/Blogs/Blogs';
 
 export const BarContext = createContext();
 function App() {
