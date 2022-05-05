@@ -7,6 +7,7 @@ import { Loading } from '../Loading/Loading';
 import './Login.css';
 import googleLogo from '../../../src/images/google-logo.png';
 import { useSendPasswordResetEmail } from 'react-firebase-hooks/auth';
+import axios from 'axios';
 
 
 
@@ -111,12 +112,25 @@ export const Login = () => {
   },[user])
   const handleLogin = (event)=>{
 
+
     event.preventDefault();
     const email = event.target.email.value;
     const password = event.target.password.value;
     // const user = {name,email,password};
     signInWithEmailAndPassword(email,password);
   }
+  if (user) {
+        const email = {email: user.email}
+        axios.post('https://obscure-waters-67643.herokuapp.com/login',email)    
+        .then(function (response) {
+          console.log(response);
+          localStorage.setItem("accessToken",response.data.token);
+          })
+          .catch(function (error) {
+              console.log(error);
+          });
+
+        }
   console.log(resetEmail);
   return (
     <div>

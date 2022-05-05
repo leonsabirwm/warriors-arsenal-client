@@ -51,7 +51,7 @@ export const ManageInventory = () => {
     <div>
      <div className='shadow w-50 mx-auto py-4 d-flex flex-column align-items-center justify-content-center my-5 px-4'>
        <div className='my-3'>
-         <h5 className=''>Total Items : {items.length}</h5>
+         <h5 className=''>Total Items : {items.length?items.length:"N/A"}</h5>
 
        </div>
        <div>

@@ -6,17 +6,21 @@ import { BarContext } from '../../App';
 import { auth } from '../../firebase.init';
 import { MyItem } from '../MyItem/MyItem';
 import { Noitems } from './../Noitems/Noitems';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { signOut } from 'firebase/auth';
+
 
 export const MyItems = () => {
+  let location = useLocation();
+  const navigate = useNavigate();
   const [takeReload,setTakeReload] = useState(false);
   const [myEmail,setMyEmail] = useState('');
   const [user, loading, error] = useAuthState(auth);
   const [myitems,setmyItems] = useState([]);
   const  [progress,setProgress] = useContext(BarContext);
   const [noitem,setNoitem] = useState(false)
-
-  console.log(user);
-  console.log(myEmail);
+  let from = location.state?.from?.pathname || "/";
+  console.log(location.state);
 
   useEffect(()=>{
     setTimeout(() => {
@@ -29,11 +33,27 @@ export const MyItems = () => {
 
   useEffect(()=>{
     setProgress(10)
-   fetch(`https://obscure-waters-67643.herokuapp.com/myitems?email=${user.email}`)
+   fetch(`https://obscure-waters-67643.herokuapp.com/myitems?email=${user.email}`,{
+    method: 'GET',
+    
+    headers: {
+      'authorization':`${user.email} ${localStorage.getItem("accessToken")}`,
+      'Content-type': 'application/json; charset=UTF-8',
+    },
+  })
   .then(res => res.json())
   .then(data => {
-    setmyItems(data)
-    if(!data.length){
+    if(!data.success){
+      swal("401!!!  Unauthorized Access",{icon: "error",className: "bg-light",button:{
+        text: "Return!!",
+        value: signOut(auth),
+        visible: true,
+        className: "bg-dark",
+        closeModal: true,
+      }})
+    }
+    setmyItems(data.result)
+    if(!data.result.length){
       setNoitem(true)
     }
   })

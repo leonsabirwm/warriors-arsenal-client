@@ -42,7 +42,7 @@ export const Header = () => {
     </Container>
   </Navbar>
     <Toaster></Toaster>
-    <LoadingBar color='#f11946' progress={progress}
+    <LoadingBar color='#03cafc' progress={progress}
     onLoaderFinished={() => setProgress(0)} />
     </div>
   )

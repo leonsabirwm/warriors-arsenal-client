@@ -3,7 +3,7 @@ import './MyItem.css'
 
 export const MyItem = ({item,handler}) => {
   return (
-    <div className='my-item shadow-sm bg-white p-4 row col-12 col-lg-4 d-flex justify-content-center align-items-center'>
+    <div className='my-item shadow-sm bg-white p-4 row col-4 d-flex justify-content-center align-items-center'>
         <div className='col-6 d-flex justify-content-center align-items-center'>
             <img className='img-fluid w-25' src={item.image} alt="" />
         </div>

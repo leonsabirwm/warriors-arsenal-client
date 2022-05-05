@@ -6,6 +6,7 @@ import './SignUP.css';
 import googleLogo from '../../../src/images/google-logo.png'
 import toast from 'react-hot-toast';
 import { Loading } from '../Loading/Loading';
+import axios from 'axios';
 
 
 export const SignUP = () => {
@@ -67,6 +68,18 @@ export const SignUP = () => {
       toast.success("User Created!!",{id:"45de"});
     }
   },[user])
+  if (user) {
+    const email = {email: user.email}
+    axios.post('http://localhost:5000/login',email)    
+    .then(function (response) {
+      console.log(response);
+      localStorage.setItem("accessToken",response.data.token);
+      })
+      .catch(function (error) {
+          console.log(error);
+      });
+
+    }
   const handlePasswordBlur = (event)=>{
     const pass = event.target.value;
     if(pass.length < 7){

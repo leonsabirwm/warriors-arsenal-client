@@ -10,7 +10,7 @@ export const Footer = () => {
                 <h3>Warrior's Arsenal</h3>
             </div>
             <p className='text-justify'>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem minima culpa deserunt, commodi neque quae illo repudiandae quasi! Libero cupiditate sit culpa odit amet. Adipisci ipsam labore beatae repellat ratione?
+               Warrior's Arsenal is an inventory managing website that authorizes users and then reveals it's features to them.It's useses of JWT makes it more secure.User can add products and manage stock of those products easily and rapidly.
             </p>
             <div>
                 <p><FaPeriscope></FaPeriscope> Grand Ave, Coconut Grove, Merrick Way, FL 12345</p>
