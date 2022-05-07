@@ -6,7 +6,7 @@ export const InventoryItem = ({item}) => {
   const navigate = useNavigate();
   return (
     <div className='col-lg-4 col-12 inventory-item'>
-        <div className='row shadow d-flex align-items-center justify-content-center ps-4'>
+        <div className='row shadow '>
             <div className='col-7 py-5 d-flex flex-column align-items-start justify-content-center left-segment'>
               <div><img className='img-fluid' src={item.image} alt="" /></div>
               <h4 className='my-3'>{item.name}</h4>
