@@ -1,6 +1,9 @@
 .inventory-item{
     transform: scale(.90);
-     /* min-height: 600px; */
+}
+.inventory-item img{
+    max-height: 10rem;
+    
 }
 .left-segment{
     min-height: 30rem;

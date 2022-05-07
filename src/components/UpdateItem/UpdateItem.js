@@ -23,6 +23,7 @@ export const UpdateItem = () => {
     const handleShipped = ()=>{
         const previousQuantity = item.quantity;
         if(previousQuantity <= 0) toast.error("Stock Out",{
+            id:'jbi65',
             style:{
                 backgroundColor:'black',color:'white'
             }

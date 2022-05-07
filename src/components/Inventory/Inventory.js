@@ -3,10 +3,13 @@ import { InventoryItem } from '../InventoryItem/InventoryItem'
 import './Inventory.css'
 import { BarContext } from './../../App';
 import { HiClipboardList } from "react-icons/hi";
+import { useNavigate } from 'react-router-dom';
 
 export const Inventory = () => {
   const [items,setItems] = useState([]);
   const  [progress,setProgress] = useContext(BarContext);
+  const navigate = useNavigate();
+
 
 
   useEffect(()=>{
@@ -28,7 +31,7 @@ export const Inventory = () => {
 
       </div>
       <div className='text-center my-3'>
-        <button className='bg-info border border-0 p-3 text-white'><HiClipboardList></HiClipboardList> Manage Inventories</button>
+        <button onClick={()=>navigate('/manageinventory')} className='bg-info border border-0 p-3 text-white'><HiClipboardList></HiClipboardList> Manage Inventories</button>
       </div>
     </div>
   )

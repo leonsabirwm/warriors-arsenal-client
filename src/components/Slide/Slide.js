@@ -21,7 +21,7 @@ export const Slide = () => {
    </div>
    <div className='col-lg-6 col-12 d-flex flex-column justify-content-center align-items-start px-5'>
       <h3 className="text-dark text-start">Keep Shipments Tracks</h3>
-      <p className=' text-justify'>Lorem ipsum dolor sit amet consectetur adipisicing elit. In nisi harum aliquid maxime? Possimus nemo, sunt similique iure nulla voluptatem?
+      <p className=' text-justify'>A shipment is all of the goods being shipped together at the same time.If regular shipments are made, an open-cargo policy can be used that insures the goods automatically when they are shipped.After that, food shipments to the port could begin in a matter of weeks.
       </p>
       <div className='d-flex justify-content-start'>
             <button className='mt-4 text-white p-3 btn-dark border border-0' onClick={()=>window.scrollTo({
@@ -46,7 +46,7 @@ export const Slide = () => {
    </div>
    <div className='col-lg-6 col-12 d-flex flex-column justify-content-center align-items-start px-5'>
       <h3 className="text-dark">Enlist Inventory Updates</h3>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. In nisi harum aliquid maxime? Possimus nemo, sunt similique iure nulla voluptatem?
+      <p>Again, this seems like a no-brainer, but it goes beyond simply adding up sales at the end of the day. You should understand, on a daily basis, what items you sold and how many, and update your inventory totals. But beyond that, you’ll need to analyze this data. Do you know when certain items sell faster or drop off? Is it seasonal? Is there a specific day of the week when you sell certain items?
       </p>
       <div className='d-flex justify-content-start'>
             <button className='mt-4 text-white p-3 btn-dark border border-0' onClick={()=>window.scrollTo({
@@ -70,7 +70,7 @@ export const Slide = () => {
    </div>
    <div className='col-lg-6 col-12 d-flex flex-column justify-content-center align-items-start px-5'>
       <h3 className="text-dark">Simple Management System</h3>
-      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. In nisi harum aliquid maxime? Possimus nemo, sunt similique iure nulla voluptatem?
+      <p>An inventory management system (or inventory system) is the process by which you track your goods throughout your entire supply chain, from purchasing to production to end sales. It governs how you approach inventory management for your business.
       </p>
       <div className='d-flex justify-content-start'>
             <button className='mt-4 text-white p-3 btn-dark border border-0' onClick={()=>navigate('/manageinventory')}><HiClipboardList></HiClipboardList> Manage Inventory</button>

@@ -39,10 +39,10 @@ export const AddItems = () => {
         <form onSubmit={handleAddItem} className='d-flex flex-column p-5'>
          <h3 className='mb-3 text-left'> <span className='fs-2 fw-bold'>|</span> Add Item</h3>
           <input className='mb-3' type="text" required name='name' placeholder='Product Name' />
-          <input className='mb-3' type="text" required name='price' placeholder='Product Price' />
+          <input className='mb-3' type="number" required name='price' placeholder='Product Price'  />
           <input className='mb-3' type="text" required name='image' placeholder='Image URL'/>
           <input className='mb-3' type="text" required name='description' placeholder='Description'/>
-          <input className='mb-3' type="text" required name='quantity' placeholder='Quantity'/>
+          <input className='mb-3' type="number" required name='quantity' placeholder='Quantity'/>
           <input className='mb-3' type="text" required name='supplier' placeholder='Supplier'/>
           <div>
           <button className='mt-3 btn btn-dark' type="submit" >Add Item</button>

@@ -42,7 +42,11 @@ function App() {
         }></Route>
         <Route path='/login' element={<Login></Login>}></Route>
         <Route path='/signup' element={<SignUP></SignUP>}></Route>
-        <Route path='/manageinventory' element={<ManageInventory></ManageInventory>}></Route>
+        <Route path='/manageinventory' element={
+          <RequireAuth>
+            <ManageInventory></ManageInventory>
+          </RequireAuth>
+        }></Route>
       
       <Route path='*' element={<NotFound></NotFound>}></Route>
       </Routes>
