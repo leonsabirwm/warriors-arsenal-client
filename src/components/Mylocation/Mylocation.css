@@ -1,0 +1,9 @@
+@media only screen and (max-width: 576px){
+    .my-map{
+        transform: scale(.90);
+        margin: 0px 0px;
+    }
+}
+.my-map{
+    margin: 48px 0;
+}

@@ -1,9 +1,10 @@
 import React from 'react'
+import './Mylocation.css'
 
 export const Mylocation = () => {
   return (
-    <div className='d-flex flex-lg-row flex-column my-5 justify-content-evenly align-items-center'>
-        <div className='d-inline-block p-4 my-5 shadow'>
+    <div className='d-flex flex-lg-row flex-column justify-content-evenly align-items-center my-map'>
+        <div className='d-inline-block p-4 mb-5 shadow'>
             <h2>Find Us On</h2>
             <h2>Google Map</h2>
         </div>

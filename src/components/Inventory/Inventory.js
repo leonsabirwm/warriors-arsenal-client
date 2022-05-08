@@ -30,7 +30,7 @@ export const Inventory = () => {
      }
 
       </div>
-      <div className='text-center my-3'>
+      <div className='text-center mt-4'>
         <button onClick={()=>navigate('/manageinventory')} className='bg-info border border-0 p-3 text-white'><HiClipboardList></HiClipboardList> Manage Inventories</button>
       </div>
     </div>
